@@ -7,6 +7,8 @@ class Net(object):
 
         self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
+        self.B1 = numpy.zeros(1,hiddenLayerSize)
+        self.B2 = numpy.zeros(1,outputLayerSize)
 
     def train(self, X, y, runs, learningRate, sampleSize):
         print self.costFunction(X,y)
@@ -24,18 +26,21 @@ class Net(object):
         print (float(numpy.sum(res == y))/y.shape[0])
 
     def forward(self,X):
-        self.z2 = numpy.mat(X) * numpy.mat(self.W1)
+        self.z2 = numpy.mat(X) * numpy.mat(self.W1) + self.B1
         self.a2 = self.sigmoid(self.z2)
-        self.z3 = numpy.mat(self.a2) * numpy.mat(self.W2)
+        self.z3 = numpy.mat(self.a2) * numpy.mat(self.W2) + self.B2
         a3 = self.sigmoid(self.z3)
         return a3
 
     def backprop(self,X,y):
         self.yhat = self.forward(X)
-        self.delta = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
-        dW2 = numpy.mat(self.a2.T) * numpy.mat(self.delta)
-        dW1 = numpy.dot(X.T, numpy.multiply(numpy.dot(self.delta,self.W2.T) , self.sigmoidPrime(self.z2)) )
-        return dW1, dW2
+        delta3 = np.multiply(-(y-self.yHat), self.sigmoidPrime(self.z3))
+        dW2 = np.dot(self.a2.T, delta3)
+        dB2 = delta3
+        delta2 = np.dot(delta3, self.W2.T)*self.sigmoidPrime(self.z2)
+        dW1 = np.dot(X.T, delta2)
+        dB1 = delta2
+        return dW1, dW2, dB1, dB2
 
     def costFunction(self, X, y):
         #Compute cost for given X,y, use weights already stored in class.
