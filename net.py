@@ -8,7 +8,7 @@ class Net(object):
         self.W1 = numpy.random.randn(self.inumpyutLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
         self.B1 = numpy.zeros((1,hiddenS))
-        self.B2 = numpy.zeros((d1,outS))
+        self.B2 = numpy.zeros((1,outS))
 
     def train(self, X, y, runs, learningRate, sampleSize):
         print self.costFunction(X,y)
