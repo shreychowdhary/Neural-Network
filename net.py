@@ -11,7 +11,7 @@ class Net(object):
     def training(X, runs, learningRate, sampleSize):
         #for i in xrange(runs):
         print X
-        rIndex = np.random.randint(0,X.shape[0],sampleSize)
+        rIndex = numpy.random.randint(0,X.shape[0],sampleSize)
         sample = X[rIndex]
         print sample
 
