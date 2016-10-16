@@ -28,4 +28,4 @@ class Net(object):
         return 1/(1+numpy.exp(-z))
 
     def sigmoidPrime(self,z):
-        numpy.multiply(self.sigmoid(z),(1-self.sigmoid(z)))
+        return umpy.multiply(self.sigmoid(z),(1-self.sigmoid(z)))
