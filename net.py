@@ -15,5 +15,17 @@ class Net(object):
         a3 = self.sigmoid(self.z3)
         return a3
 
+
+
+    def backprop(self,X,y):
+        self.yhat = forward(X)
+        delta = numpy.multiply(-(y-yhat), self.sigmoidPrime(self.z3))
+        dW2 = np.mat(self.a2.T) * np.mat(delta)
+        dW1 = np.mat(delta) * np.mat(self.W2.T) * sigmoidPrime(self.z2) * numpy.mat(X.T)
+        return dW2, dW1
+
     def sigmoid(self,z):
         return 1/(1+numpy.exp(-z))
+
+    def sigmoidPrime(self,z):
+        sigmoid(z) * (1-sigmoid(z))
