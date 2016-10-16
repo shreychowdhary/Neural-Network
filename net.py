@@ -1,9 +1,9 @@
 import numpy
 class Net(object):
     def __init__(self):
-        self.inputLayerSize = 2
-        self.hiddenLayerSize = 3
-        self.outputLayerSize = 1
+        self.inputLayerSize = 784
+        self.hiddenLayerSize = 32
+        self.outputLayerSize = 10
 
         self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
@@ -28,7 +28,6 @@ class Net(object):
         self.yhat = self.forward(X)
         self.delta = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
         dW2 = numpy.mat(self.a2.T) * numpy.mat(self.delta)
-        print self.delta.shape
         dW1 = numpy.dot(X.T, numpy.multiply(numpy.dot(self.delta,self.W2.T) , self.sigmoidPrime(self.z2)) )
         return dW1, dW2
 
