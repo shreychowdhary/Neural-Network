@@ -1,9 +1,9 @@
 import numpy
 class Net(object):
     def __init__(self):
-        self.inputLayerSize = 784
-        self.hiddenLayerSize = 32
-        self.outputLayerSize = 10
+        self.inputLayerSize = 1
+        self.hiddenLayerSize = 1
+        self.outputLayerSize = 1
 
         self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
@@ -14,15 +14,14 @@ class Net(object):
             rIndex = numpy.random.randint(0,X.shape[0],sampleSize)
             sampleX = X[rIndex]
             sampley = y[rIndex]
-            #dW1,dW2 = self.backprop(sampleX,sampley)
-            dW1,dW2 = self.backprop(X,y)
+            dW1,dW2 = self.backprop(sampleX,sampley)
             self.W1 -= learningRate * dW1
             self.W2 -= learningRate * dW2
         print self.costFunction(X,y)
 
     def evaluate(self,X,y):
         res = numpy.argmax(self.forward(X),axis = 1)
-        print (numpy.sum(res == y)/y.shape[0])
+        print (float(numpy.sum(res == y))/y.shape[0])
 
     def forward(self,X):
         self.z2 = numpy.mat(X) * numpy.mat(self.W1)
