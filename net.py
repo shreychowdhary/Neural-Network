@@ -1,14 +1,14 @@
 import numpy
 class Net(object):
-    def __init__(self,inumpyutS,hiddenS,outS):
-        self.inumpyutLayerSize = inumpyutS
-        self.hiddenLayerSize = hiddenS
-        self.outputLayerSize = outS
+    def __init__(self,input,hidden,out):
+        self.inputLayerSize = input
+        self.hiddenLayerSize = hidden
+        self.outputLayerSize = out
 
-        self.W1 = numpy.random.randn(self.inumpyutLayerSize,self.hiddenLayerSize)
+        self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
-        self.B1 = numpy.zeros((1,hiddenS))
-        self.B2 = numpy.zeros((1,outS))
+        self.B1 = numpy.zeros((1,hidden))
+        self.B2 = numpy.zeros((1,out))
 
     def train(self, X, y, runs, learningRate, sampleSize):
         print self.costFunction(X,y)
@@ -16,9 +16,11 @@ class Net(object):
             rIndex = numpy.random.randint(0,X.shape[0],sampleSize)
             sampleX = X[rIndex]
             sampley = y[rIndex]
-            dW1,dW2 = self.backprop(sampleX,sampley)
+            dW1,dW2,dB1,dB2 = self.backprop(sampleX,sampley)
             self.W1 -= learningRate * dW1
             self.W2 -= learningRate * dW2
+            self.B1 -= learningRate * dB1
+            self.B2 -= learningRate * dB2
         print self.costFunction(X,y)
 
     def evaluate(self,X,y):
@@ -34,12 +36,12 @@ class Net(object):
 
     def backprop(self,X,y):
         self.yhat = self.forward(X)
-        delta3 = numpy.multiply(-(y-self.yHat), self.sigmoidPrime(self.z3))
-        dW2 = numpy.dot(self.a2.T, delta3)
-        dB2 = delta3
-        delta2 = numpy.dot(delta3, self.W2.T)*self.sigmoidPrime(self.z2)
-        dW1 = numpy.dot(X.T, delta2)
-        dB1 = delta2
+        self.delta3 = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
+        dW2 = numpy.dot(self.a2.T,self.delta3)
+        dB2 = self.delta3
+        self.delta2 = numpy.multiply(numpy.dot(self.delta,self.W2.T) , self.sigmoidPrime(self.z2))
+        dW1 = numpy.dot(X.T,self.delta2)
+        dB1 = self.delta2
         return dW1, dW2, dB1, dB2
 
     def costFunction(self, X, y):
