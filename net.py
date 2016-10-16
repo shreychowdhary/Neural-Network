@@ -1,14 +1,14 @@
 import numpy
 class Net(object):
-    def __init__(self,inputS,hiddenS,outS):
-        self.inputLayerSize = inputS
+    def __init__(self,inumpyutS,hiddenS,outS):
+        self.inumpyutLayerSize = inumpyutS
         self.hiddenLayerSize = hiddenS
         self.outputLayerSize = outS
 
-        self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
+        self.W1 = numpy.random.randn(self.inumpyutLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
         self.B1 = numpy.zeros((1,hiddenS))
-        self.B2 = numpy.zeros((1,outS))
+        self.B2 = numpy.zeros((d1,outS))
 
     def train(self, X, y, runs, learningRate, sampleSize):
         print self.costFunction(X,y)
@@ -34,11 +34,11 @@ class Net(object):
 
     def backprop(self,X,y):
         self.yhat = self.forward(X)
-        delta3 = np.multiply(-(y-self.yHat), self.sigmoidPrime(self.z3))
-        dW2 = np.dot(self.a2.T, delta3)
+        delta3 = numpy.multiply(-(y-self.yHat), self.sigmoidPrime(self.z3))
+        dW2 = numpy.dot(self.a2.T, delta3)
         dB2 = delta3
-        delta2 = np.dot(delta3, self.W2.T)*self.sigmoidPrime(self.z2)
-        dW1 = np.dot(X.T, delta2)
+        delta2 = numpy.dot(delta3, self.W2.T)*self.sigmoidPrime(self.z2)
+        dW1 = numpy.dot(X.T, delta2)
         dB1 = delta2
         return dW1, dW2, dB1, dB2
 
