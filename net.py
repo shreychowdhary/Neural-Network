@@ -11,8 +11,9 @@ class Net(object):
     def training(self, X, y, runs, learningRate, sampleSize):
         for i in xrange(runs):
             rIndex = numpy.random.randint(0,X.shape[0],sampleSize)
-            sample = X[rIndex]
-            dW1,dW2 = self.backprop(X,y)
+            sampleX = X[rIndex]
+            sampley = y[rIndex]
+            dW1,dW2 = self.backprop(sampleX,sampley)
             self.W1 -= learningRate * dW1
             self.W2 -= learningRate * dW2
             print self.costFunction(X,y)
