@@ -38,7 +38,7 @@ class Net(object):
         self.yhat = self.forward(X)
         self.delta3 = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
         dW2 = numpy.dot(self.a2.T,self.delta3)
-        dB2 = numpy.sum(self.delta3, axis = 0, keepdims = true)
+        dB2 = numpy.sum(self.delta3, axis = 0, keepdims = True)
         self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2.T) , self.sigmoidPrime(self.z2))
         dW1 = numpy.dot(X.T,self.delta2)
         dB1 = numpy.sum(self.delta2,axis = 0)
