@@ -29,7 +29,7 @@ class Net(object):
         self.delta = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
         dW2 = numpy.mat(self.a2.T) * numpy.mat(delta)
         print self.delta.shape
-        dW1 = numpy.mat(X.T) * (numpy.dot(delta,self.W2.T) * self.sigmoidPrime(self.z2))
+        dW1 = numpy.mat(X.T) * (numpy.dot(self.delta,self.W2.T) * self.sigmoidPrime(self.z2))
         return dW1, dW2s
 
     def costFunction(self, X, y):
