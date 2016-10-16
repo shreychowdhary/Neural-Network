@@ -28,6 +28,7 @@ class Net(object):
         self.yhat = self.forward(X)
         delta = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
         dW2 = numpy.mat(self.a2.T) * numpy.mat(delta)
+        print delta.shape
         dW1 = numpy.mat(X.T) * ((numpy.mat(delta) * numpy.mat(self.W2.T)) * self.sigmoidPrime(self.z2))
         return dW1, dW2
 
