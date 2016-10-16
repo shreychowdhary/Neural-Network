@@ -21,11 +21,11 @@ class Net(object):
         self.yhat = self.forward(X)
         delta = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
         dW2 = np.mat(self.a2.T) * np.mat(delta)
-        dW1 = np.mat(delta) * np.mat(self.W2.T) * sigmoidPrime(self.z2) * numpy.mat(X.T)
+        dW1 = np.mat(delta) * np.mat(self.W2.T) * self.sigmoidPrime(self.z2) * numpy.mat(X.T)
         return dW2, dW1
 
     def sigmoid(self,z):
         return 1/(1+numpy.exp(-z))
 
     def sigmoidPrime(self,z):
-        sigmoid(z) * (1-sigmoid(z))
+        self.sigmoid(z) * (1-self.sigmoid(z))
