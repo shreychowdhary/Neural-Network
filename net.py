@@ -20,8 +20,8 @@ class Net(object):
         print self.costFunction(X,y)
 
     def evaluate(self,X,y):
-        res = np.argmax(self.forward(X),axis = 1)
-        print (np.sum(res == y)/y.shape[0])
+        res = numpy.argmax(self.forward(X),axis = 1)
+        print (numpy.sum(res == y)/y.shape[0])
 
     def forward(self,X):
         self.z2 = numpy.mat(X) * numpy.mat(self.W1)
