@@ -18,7 +18,7 @@ class Net(object):
     def costFunction(self, X, y):
         #Compute cost for given X,y, use weights already stored in class.
         self.yHat = self.forward(X)
-        J = 0.5*sum((y-self.yHat)**2)
+        J = 0.5*sum(numpy.square(y-self.yHat))
         return J
 
     def backprop(self,X,y):
