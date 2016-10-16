@@ -34,7 +34,6 @@ class Net(object):
 
     def backprop(self,X,y):
         self.yhat = self.forward(X)
-        print y.shape , self.yhat.shape, self.z3.shape
         delta3 = numpy.multiply(-(y-self.yHat), self.sigmoidPrime(self.z3))
         dW2 = numpy.dot(self.a2.T, delta3)
         dB2 = delta3
