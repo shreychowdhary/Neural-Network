@@ -8,7 +8,7 @@ class Net(object):
         self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
 
-    def training(X, runs, learningRate, sampleSize):
+    def training(self,X, runs, learningRate, sampleSize):
         #for i in xrange(runs):
         print X
         rIndex = numpy.random.randint(0,X.shape[0],sampleSize)
