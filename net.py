@@ -33,8 +33,9 @@ class Net(object):
 
     def costFunction(self, X, y):
         #Compute cost for given X,y, use weights already stored in class.
+        #create an
         self.yHat = self.forward(X)
-        J = 0.5*sum(numpy.square(y-self.yHat))
+        J = 0.5*sum(sum(numpy.square(y-self.yHat)))
         return J
 
     def sigmoid(self,z):
