@@ -26,11 +26,11 @@ class Net(object):
 
     def backprop(self,X,y):
         self.yhat = self.forward(X)
-        delta = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
+        self.delta = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
         dW2 = numpy.mat(self.a2.T) * numpy.mat(delta)
-        print delta.shape
-        dW1 = numpy.mat(X.T) * ((numpy.mat(delta) * numpy.mat(self.W2.T)) * self.sigmoidPrime(self.z2))
-        return dW1, dW2, delta
+        print self.delta.shape
+        dW1 = numpy.mat(X.T) * (numpy.dot(delta,self.W2.T) * self.sigmoidPrime(self.z2))
+        return dW1, dW2s
 
     def costFunction(self, X, y):
         #Compute cost for given X,y, use weights already stored in class.
