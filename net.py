@@ -8,12 +8,13 @@ class Net(object):
         self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
 
-    def training(self,X, runs, learningRate, sampleSize):
-        #for i in xrange(runs):
-        print X
-        rIndex = numpy.random.randint(0,X.shape[0],sampleSize)
-        sample = X[rIndex]
-        print sample
+    def training(self, X, y, runs, learningRate, sampleSize):
+        for i in xrange(runs):
+            rIndex = numpy.random.randint(0,X.shape[0],sampleSize)
+            sample = X[rIndex]
+            dW1,dW2 = self.backprop(X,y)
+            self.W1 -= learningRate * dW1
+            self.W2 -= learningRate * dW2
 
     def forward(self,X):
         self.z2 = numpy.mat(X) * numpy.mat(self.W1)
