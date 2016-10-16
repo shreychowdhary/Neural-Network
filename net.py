@@ -20,8 +20,8 @@ class Net(object):
     def backprop(self,X,y):
         self.yhat = self.forward(X)
         delta = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
-        dW2 = np.mat(self.a2.T) * np.mat(delta)
-        dW1 = np.mat(delta) * np.mat(self.W2.T) * self.sigmoidPrime(self.z2) * numpy.mat(X.T)
+        dW2 = numpy.mat(self.a2.T) * numpy.mat(delta)
+        dW1 = numpy.mat(delta) * numpy.mat(self.W2.T) * self.sigmoidPrime(self.z2) * numpy.mat(X.T)
         return dW2, dW1
 
     def sigmoid(self,z):
