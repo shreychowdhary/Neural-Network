@@ -9,9 +9,9 @@ class Net(object):
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
 
     def forward(self,X):
-        self.z2 = numpy.mat(self.W1) * numpy.mat(X)
+        self.z2 = numpy.mat(X) * numpy.mat(self.W1)
         self.a2 = self.sigmoid(self.z2)
-        self.z3 = numpy.mat(self.W2) * numpy.mat(self.a2)
+        self.z3 = numpy.mat(self.a2) * numpy.mat(self.W2)
         self.a3 = self.sigmoid(self.z3)
         return a3
 
