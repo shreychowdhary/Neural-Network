@@ -30,7 +30,7 @@ class Net(object):
         dW2 = numpy.mat(self.a2.T) * numpy.mat(self.delta)
         print self.delta.shape
         dW1 = numpy.dot(X.T, numpy.multiply(numpy.dot(self.delta,self.W2.T) , self.sigmoidPrime(self.z2)) )
-        return dW1, dW2s
+        return dW1, dW2
 
     def costFunction(self, X, y):
         #Compute cost for given X,y, use weights already stored in class.
