@@ -18,6 +18,10 @@ class Net(object):
             self.W2 -= learningRate * dW2
             print self.costFunction(X,y)
 
+    def evaluate(X,y):
+        res = np.argmax(self.forward(X),axis = 1)
+        print (np.sum(res == y)/y.shape[0])
+
     def forward(self,X):
         self.z2 = numpy.mat(X) * numpy.mat(self.W1)
         self.a2 = self.sigmoid(self.z2)
