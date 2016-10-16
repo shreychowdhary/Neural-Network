@@ -1,9 +1,9 @@
 import numpy
 class Net(object):
     def __init__(self):
-        self.inputLayerSize = 1
-        self.hiddenLayerSize = 1
-        self.outputLayerSize = 1
+        self.inputLayerSize = 784
+        self.hiddenLayerSize = 32
+        self.outputLayerSize = 10
 
         self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
