@@ -5,8 +5,8 @@ class Net(object):
         self.hiddenLayerSize = hidden
         self.outputLayerSize = out
 
-        self.W1 = numpy.random.randn(self.inputLayerSize,self.hiddenLayerSize)
-        self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
+        self.W1 = numpy.random.randn(self.inputLayerSize+1,self.hiddenLayerSize)
+        self.W2 = numpy.random.randn(self.hiddenLayerSize+1,self.outputLayerSize)
 
     def train(self, X, y, runs, learningRate, sampleSize):
 
@@ -27,17 +27,24 @@ class Net(object):
         print (float(numpy.sum(res == y))/y.shape[0])
 
     def forward(self,X):
-        self.z2 = numpy.mat(X) * numpy.mat(self.W1)
-        self.a2 = self.sigmoid(self.z2)
+        Xn = numpy.zeros(X.shape[0],X.shape[1]+1)
+        Xn[:,:-1] = X
+        Xn[:,-1] = 1
+        self.z2 = numpy.dot(X,self.W1)
+        self.a2 = self.tanh(self.z2)
+        a2n = numpy.zeros(self.a2.shape[0],self.a2.shape[1]+1)
+        a2n[:,:-1] = self.a2
+        a2n[:-1] = 1
+        self.a2 = a2n
         self.z3 = numpy.mat(self.a2) * numpy.mat(self.W2)
-        a3 = self.sigmoid(self.z3)
+        a3 = self.tanh(self.z3)
         return a3
 
     def backprop(self,X,y):
         self.yhat = self.forward(X)
-        self.delta3 = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
+        self.delta3 = numpy.multiply(-(y-self.yhat), self.tanhPrime(self.z3))
         dW2 = numpy.dot(self.a2.T,self.delta3)
-        self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2.T) , self.sigmoidPrime(self.z2))
+        self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2.T) , self.tanhPrime(self.z2))
         dW1 = numpy.dot(X.T,self.delta2)
         return dW1, dW2
 
