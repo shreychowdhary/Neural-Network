@@ -9,8 +9,9 @@ class Net(object):
         self.W2 = numpy.random.randn(self.hiddenLayerSize,self.outputLayerSize)
 
     def train(self, X, y, runs, learningRate, sampleSize):
-        print self.costFunction(X,y)
+
         for i in xrange(runs):
+
             indexes = numpy.arange(X.shape[0])
             numpy.random.shuffle(indexes)
             X = X[indexes]
@@ -19,7 +20,8 @@ class Net(object):
                 dW1,dW2 = self.backprop(X[j:j+sampleSize],y[j:j+sampleSize])
                 self.W1 -= learningRate * dW1
                 self.W2 -= learningRate * dW2
-        print self.costFunction(X,y)
+            print self.costFunction(X,y)
+
 
     def evaluate(self,X,y):
         res = numpy.argmax(self.forward(X),axis = 1)
