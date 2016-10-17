@@ -55,7 +55,7 @@ class Net(object):
         return numpy.multiply(self.sigmoid(z),(1-self.sigmoid(z)))
 
     def tanh(self,x):
-        return np.tanh(x)
+        return numpy.tanh(x)
 
     def tanhPrime(self,x):
-        return 1.0 - np.tanh(x)**2
+        return 1.0 - numpy.tanh(x)**2
