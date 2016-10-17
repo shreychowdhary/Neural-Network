@@ -1,23 +1,4 @@
 import numpy
-def computeNumericalGradient(N, X, y):
-    paramsI = N.getParams()
-    numgrad = numpy.zeros(paramsI.shape)
-    perturb = numpy.zeros(paramsI.shape)
-    e = 1e-4
-
-    for p in range(len(paramsI)):
-        perturb[p] = e
-        N.setParams(paramsI + perturb)
-        loss2 = N.costFunction(X,y)
-
-        N.setParams(paramsI - perturb)
-        loss1 = N.costFunction(X,y)
-
-        numgrad[p] = (loss2 - loss1) / (2*e)
-
-        perturb[p] = 0
-    N.setParams(paramsI)
-    return numgrad
 
 class Net(object):
     def __init__(self,input,hidden,out):
@@ -77,20 +58,6 @@ class Net(object):
         self.yHat = self.forward(X)
         J = 0.5*numpy.sum(numpy.square(y-self.yHat))
         return J
-    def getParams(self):
-        params = numpy.concatenate((self.W1.ravel(),self.W2.ravel()))
-        return params
-
-    def setParams(self, params):
-        W1_start = 0
-        W1_end = self.hiddenLayerSize * (self.inputLayerSize + 1)
-        self.W1 = numpy.reshape(params[W1_start:W1_end],(self.hiddenLayerSize,self.inputLayerSize+1))
-        W2_end = W1_end + self.outputLayerSize * (self.hiddenLayerSize + 1)
-        self.W2 = numpy.reshape(params[W1_end:W2_end],(self.outputLayerSize,self.hiddenLayerSize+1))
-
-    def computeGradients(self,X,y):
-        dW1,dW2 = self.backprop(X,y)
-        return numpy.concatenate((dW1.ravel(),dW2.ravel()))
 
     def sigmoid(self,z):
         return 1/(1+numpy.exp(-z))
