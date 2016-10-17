@@ -25,6 +25,7 @@ class Net(object):
     def evaluate(self,X,y):
         res = numpy.argmax(self.forward(X),axis = 1)
         res = numpy.mat(res).T
+        print(res)
         print (float(numpy.sum(res == y))/y.shape[0])
 
     def forward(self,X):
