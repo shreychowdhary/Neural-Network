@@ -28,16 +28,16 @@ class Net(object):
 
     def forward(self,X):
         self.z2 = numpy.mat(X) * numpy.mat(self.W1)
-        self.a2 = self.tanh(self.z2)
+        self.a2 = self.sigmoid(self.z2)
         self.z3 = numpy.mat(self.a2) * numpy.mat(self.W2)
-        a3 = self.tanh(self.z3)
+        a3 = self.sigmoid(self.z3)
         return a3
 
     def backprop(self,X,y):
         self.yhat = self.forward(X)
-        self.delta3 = numpy.multiply(-(y-self.yhat), self.tanhPrime(self.z3))
+        self.delta3 = numpy.multiply(-(y-self.yhat), self.sigmoidPrime(self.z3))
         dW2 = numpy.dot(self.a2.T,self.delta3)
-        self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2.T) , self.tanhPrime(self.z2))
+        self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2.T) , self.sigmoidPrime(self.z2))
         dW1 = numpy.dot(X.T,self.delta2)
         return dW1, dW2
 
