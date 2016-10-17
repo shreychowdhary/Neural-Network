@@ -54,8 +54,8 @@ class Net(object):
     def sigmoidPrime(self,z):
         return numpy.multiply(self.sigmoid(z),(1-self.sigmoid(z)))
 
-    def tanh(self,x):
-        return numpy.tanh(x)
+    def tanh(self,z):
+        return numpy.tanh(z)
 
-    def tanhPrime(self,x):
-        return 1.0 - numpy.tanh(x)**2
+    def tanhPrime(self,z):
+        return 1.0 - numpy.square(numpy.tanh(z))
