@@ -1,5 +1,5 @@
 import numpy
-def computeNumericalGradient(N, X, y)::
+def computeNumericalGradient(N, X, y):
     paramsI = N.getParams()
     numgrad = numpy.zeros(paramsI.shape)
     perturb = numpy.zeros(paramsI.shape)
