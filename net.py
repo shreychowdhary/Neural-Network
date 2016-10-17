@@ -10,12 +10,11 @@ class Net(object):
 
     def train(self, X, y, runs, learningRate, sampleSize):
         print self.costFunction(X,y)
-
         for i in xrange(runs):
-            data = zip(X,y)
-            numpy.random.shuffle(data)
-            X = data[0]
-            y = data[1]
+            indexes = np.arange(X.shape[0])
+            numpy.random.shuffle(indexes)
+            X = X[indexes]
+            y = y[indexes]
             for j in xrange(0,X.shape[0],sampleSize):
                 dW1,dW2 = self.backprop(X[j:j+sampleSize],y[j:j+sampleSize])
                 self.W1 -= learningRate * dW1
