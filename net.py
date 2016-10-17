@@ -27,12 +27,12 @@ class Net(object):
         print (float(numpy.sum(res == y))/y.shape[0])
 
     def forward(self,X):
-        Xn = numpy.zeros(X.shape[0],X.shape[1]+1)
+        Xn = numpy.zeros((X.shape[0],X.shape[1]+1))
         Xn[:,:-1] = X
         Xn[:,-1] = 1
         self.z2 = numpy.dot(X,self.W1)
         self.a2 = self.tanh(self.z2)
-        a2n = numpy.zeros(self.a2.shape[0],self.a2.shape[1]+1)
+        a2n = numpy.zeros((self.a2.shape[0],self.a2.shape[1]+1))
         a2n[:,:-1] = self.a2
         a2n[:-1] = 1
         self.a2 = a2n
