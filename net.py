@@ -78,7 +78,7 @@ class Net(object):
         J = 0.5*numpy.sum(numpy.square(y-self.yHat))
         return J
     def getParams(self):
-        return numpy.concatenate(numpy.mat(self.W1.ravel()).T,numpy.mat(self.W2.ravel()).T)
+        return numpy.concatenate(numpy.array(self.W1.ravel()),numpy.array(self.W2.ravel()))
 
     def setParams(self, params):
         W1_start = 0
