@@ -30,22 +30,23 @@ class Net(object):
         Xn = numpy.zeros((X.shape[0],X.shape[1]+1))
         Xn[:,:-1] = X
         Xn[:,-1] = 1
-        self.z2 = numpy.dot(Xn,self.W1.T)
-        self.a2 = self.tanh(self.z2)
+        self.a1 = Xn
+        self.z2 = numpy.dot(self.a1,self.W1.T)
+        self.a2 = self.sigmoid(self.z2)
         a2n = numpy.zeros((self.a2.shape[0],self.a2.shape[1]+1))
         a2n[:,:-1] = self.a2
         a2n[:-1] = 1
         self.a2 = a2n
         self.z3 = numpy.dot(self.a2,self.W2.T)
-        a3 = self.tanh(self.z3)
+        a3 = self.sigmoid(self.z3)
         return a3
 
     def backprop(self,X,y):
         self.yhat = self.forward(X)
-        self.delta3 = numpy.multiply(-(y-self.yhat), self.tanhPrime(self.z3))
-        dW2 = numpy.dot(self.a2.T,self.delta3)/X.shape[0]
-        self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2.T) , self.tanhPrime(self.z2))
-        dW1 = numpy.dot(X.T,self.delta2)/X.shape[0]
+        self.delta3 = -(y-self.yhat)
+        dW2 = numpy.dot(self.delta3.T,self.a2)/X.shape[0]
+        self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2[:,2:].T) , self.sigmoidPrime(self.z2))
+        dW1 = numpy.dot(self.delta2.T,self.a1)/X.shape[0]
         return dW1, dW2
 
     def costFunction(self, X, y):
