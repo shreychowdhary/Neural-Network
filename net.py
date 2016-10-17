@@ -28,14 +28,14 @@ class Net(object):
 
     def forward(self,X):
         Xn = numpy.zeros((X.shape[0],X.shape[1]+1))
-        Xn[:,:-1] = X
-        Xn[:,-1] = 1
+        Xn[:,1:] = X
+        Xn[:,0] = 1
         self.a1 = Xn
         self.z2 = numpy.dot(self.a1,self.W1.T)
         self.a2 = self.sigmoid(self.z2)
         a2n = numpy.zeros((self.a2.shape[0],self.a2.shape[1]+1))
-        a2n[:,:-1] = self.a2
-        a2n[:-1] = 1
+        a2n[:,1:] = self.a2
+        a2n[:,0] = 1
         self.a2 = a2n
         self.z3 = numpy.dot(self.a2,self.W2.T)
         a3 = self.sigmoid(self.z3)
