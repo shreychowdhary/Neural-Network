@@ -19,7 +19,6 @@ class Net(object):
                 dW1,dW2 = self.backprop(X[j:j+sampleSize],y[j:j+sampleSize])
                 self.W1 -= learningRate * dW1
                 self.W2 -= learningRate * dW2
-                learningRate -= .01
             print self.costFunction(X,y)
 
 
