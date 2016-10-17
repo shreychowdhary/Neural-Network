@@ -11,7 +11,7 @@ class Net(object):
     def train(self, X, y, runs, learningRate, sampleSize):
         print self.costFunction(X,y)
         for i in xrange(runs):
-            indexes = np.arange(X.shape[0])
+            indexes = numpy.arange(X.shape[0])
             numpy.random.shuffle(indexes)
             X = X[indexes]
             y = y[indexes]
