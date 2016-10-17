@@ -22,7 +22,7 @@ class Net(object):
             print self.costFunction(X,y)
 
 
-    def evaluate(self,X,y):
+    def eval(self,X,y):
         res = numpy.argmax(self.forward(X),axis = 1)
         res = numpy.mat(res).T
         print res, numpy.sum(res == y)
