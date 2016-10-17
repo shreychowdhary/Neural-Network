@@ -45,7 +45,7 @@ class Net(object):
         self.yhat = self.forward(X)
         self.delta3 = -(y-self.yhat)
         dW2 = numpy.dot(self.delta3.T,self.a2)/X.shape[0]
-        self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2[:,2:]) , self.sigmoidPrime(self.z2))
+        self.delta2 = numpy.multiply(numpy.dot(self.delta3,self.W2[:,1:]) , self.sigmoidPrime(self.z2))
         dW1 = numpy.dot(self.delta2.T,self.a1)/X.shape[0]
         return dW1, dW2
 
