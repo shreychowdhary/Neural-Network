@@ -1,12 +1,12 @@
 import numpy
 
 class Net(object):
-    def __init__(self,inumpyut,hidden,out):
-        self.inumpyutLayerSize = inumpyut
+    def __init__(self,input,hidden,out):
+        self.inputLayerSize = input
         self.hiddenLayerSize = hidden
         self.outputLayerSize = out
 
-        self.W1 = numpy.random.randn(self.hiddenLayerSize,self.inumpyutLayerSize+1)
+        self.W1 = numpy.random.randn(self.hiddenLayerSize,self.inputLayerSize+1)
         self.W2 = numpy.random.randn(self.outputLayerSize,self.hiddenLayerSize+1)
 
     def train(self, X, y, runs, learningRate, sampleSize):
@@ -73,8 +73,8 @@ class Net(object):
     def setParams(self, params):
         #Set W1 and W2 using single paramater vector.
         W1_start = 0
-        W1_end = self.hiddenLayerSize * (self.inumpyutLayerSize + 1)
-        self.W1 = numpy.reshape(params[W1_start:W1_end], (self.inumpyutLayerSize , self.hiddenLayerSize))
+        W1_end = self.hiddenLayerSize * (self.inputLayerSize + 1)
+        self.W1 = numpy.reshape(params[W1_start:W1_end], (self.inputLayerSize , self.hiddenLayerSize))
         W2_end = W1_end + (self.hiddenLayerSize + 1)*self.outputLayerSize
         self.W2 = numpy.reshape(params[W1_end:W2_end], (self.hiddenLayerSize, self.outputLayerSize))
 
