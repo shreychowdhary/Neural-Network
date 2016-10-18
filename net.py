@@ -29,17 +29,12 @@ class Net(object):
         print res, numpy.sum(res == y)
         print numpy.sum(res == y)/float(y.shape[0])
 
-    def forward(self,X):
-        Xn = numpy.zeros((X.shape[0],X.shape[1]+1))
-        Xn[:,1:] = X
-        Xn[:,0] = 1
-        self.a1 = Xn
+    def forward(self,X):        
+        self.a1 = numpy.insert(X,0,1,axis=1)
         self.z2 = numpy.dot(self.a1,self.W1.T)
         self.a2 = self.sigmoid(self.z2)
-        a2n = numpy.zeros((self.a2.shape[0],self.a2.shape[1]+1))
-        a2n[:,1:] = self.a2
-        a2n[:,0] = 1
-        self.a2 = a2n
+
+        self.a2 = numpy.insert(self.a2,0,1,axis=1)
         self.z3 = numpy.dot(self.a2,self.W2.T)
         a3 = self.sigmoid(self.z3)
         return a3
