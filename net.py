@@ -74,6 +74,7 @@ class Net(object):
         #Set W1 and W2 using single paramater vector.
         W1_start = 0
         W1_end = self.hiddenLayerSize * (self.inputLayerSize + 1)
+        print params[W1_start:W1_end].shape
         self.W1 = numpy.reshape(params[W1_start:W1_end], (self.hiddenLayerSize,self.inputLayerSize+1))
         W2_end = W1_end + (self.hiddenLayerSize + 1)*self.outputLayerSize
         self.W2 = numpy.reshape(params[W1_end:W2_end], (self.outputLayerSize,self.hiddenLayerSize+1))
