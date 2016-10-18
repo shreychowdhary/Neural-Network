@@ -29,7 +29,7 @@ class Net(object):
         print res, numpy.sum(res == y)
         print numpy.sum(res == y)/float(y.shape[0])
 
-    def forward(self,X):        
+    def forward(self,X):
         self.a1 = numpy.insert(X,0,1,axis=1)
         self.z2 = numpy.dot(self.a1,self.W1.T)
         self.a2 = self.sigmoid(self.z2)
@@ -75,4 +75,4 @@ class Net(object):
 
     def computeGradients(self, X, y):
         dW1, dW2 = self.backprop(X, y)
-        return numpy.concatenate((dW1.ravel(), dW2.ravel()))
+        return numpy.concatenate((dW1.ravel().T, dW2.ravel().T))
