@@ -80,5 +80,5 @@ class Net(object):
         self.W2 = numpy.reshape(params[W1_end:W2_end], (self.outputLayerSize,self.hiddenLayerSize+1))
 
     def computeGradients(self, X, y):
-        dJdW1, dJdW2 = self.costFunctionumpyrime(X, y)
-        return numpy.concatenate((dJdW1.ravel(), dJdW2.ravel()))
+        dW1, dW2 = self.backprop(X, y)
+        return numpy.concatenate((dW1.ravel(), dW2.ravel()))
