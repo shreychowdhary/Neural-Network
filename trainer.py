@@ -8,7 +8,7 @@ class trainer(object):
         self.N.setParams(params)
         self.J.append(self.N.costFunction(self.X, self.y))
 
-     def costFunctionWrapper(self, params, X, y):
+    def costFunctionWrapper(self, params, X, y):
         self.N.setParams(params)
         cost = self.N.costFunction(X, y)
         grad = self.N.computeGradients(X,y)
