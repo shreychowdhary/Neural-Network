@@ -1,12 +1,12 @@
 import numpy
 
 class Net(object):
-    def __init__(self,input,hidden,out):
-        self.inputLayerSize = input
+    def __init__(self,inumpyut,hidden,out):
+        self.inumpyutLayerSize = inumpyut
         self.hiddenLayerSize = hidden
         self.outputLayerSize = out
 
-        self.W1 = numpy.random.randn(self.hiddenLayerSize,self.inputLayerSize+1)
+        self.W1 = numpy.random.randn(self.hiddenLayerSize,self.inumpyutLayerSize+1)
         self.W2 = numpy.random.randn(self.outputLayerSize,self.hiddenLayerSize+1)
 
     def train(self, X, y, runs, learningRate, sampleSize):
@@ -67,17 +67,17 @@ class Net(object):
 
     def getParams(self):
         #Get W1 and W2 unrolled into vector:
-        params = np.concatenate((self.W1.ravel(), self.W2.ravel()))
+        params = numpy.concatenate((self.W1.ravel(), self.W2.ravel()))
         return params
 
     def setParams(self, params):
         #Set W1 and W2 using single paramater vector.
         W1_start = 0
-        W1_end = self.hiddenLayerSize * (self.inputLayerSize + 1)
-        self.W1 = np.reshape(params[W1_start:W1_end], (self.inputLayerSize , self.hiddenLayerSize))
+        W1_end = self.hiddenLayerSize * (self.inumpyutLayerSize + 1)
+        self.W1 = numpy.reshape(params[W1_start:W1_end], (self.inumpyutLayerSize , self.hiddenLayerSize))
         W2_end = W1_end + (self.hiddenLayerSize + 1)*self.outputLayerSize
-        self.W2 = np.reshape(params[W1_end:W2_end], (self.hiddenLayerSize, self.outputLayerSize))
+        self.W2 = numpy.reshape(params[W1_end:W2_end], (self.hiddenLayerSize, self.outputLayerSize))
 
     def computeGradients(self, X, y):
-        dJdW1, dJdW2 = self.costFunctionPrime(X, y)
-        return np.concatenate((dJdW1.ravel(), dJdW2.ravel()))
+        dJdW1, dJdW2 = self.costFunctionumpyrime(X, y)
+        return numpy.concatenate((dJdW1.ravel(), dJdW2.ravel()))
