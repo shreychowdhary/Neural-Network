@@ -1,4 +1,5 @@
 import numpy
+import pickle
 
 class Net(object):
     def __init__(self,input,hidden,out):
@@ -53,6 +54,14 @@ class Net(object):
         self.yHat = self.forward(X)
         J = 0.5*numpy.sum(numpy.square(y-self.yHat))
         return J
+
+    def save():
+        f1 = open('W1.pkl','wb')
+        f2 = open('W2.pkl','wb')
+        pickle.dump(NN.W1,f1)
+        pickle.dump(NN.W2,f2)
+        f1.close();
+        f2.close();
 
     def sigmoid(self,z):
         return 1/(1+numpy.exp(-z))

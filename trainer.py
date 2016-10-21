@@ -25,7 +25,7 @@ class trainer(object):
 
         params0 = self.N.getParams()
 
-        _res = optimize.minimize(self.costFunctionWrapper, params0, jac=True, method='TNC', \
+        _res = optimize.minimize(self.costFunctionWrapper, params0, jac=True, \
                                  args=(X, y), options={'maxiter': 10000, 'disp' : True}, callback=self.callbackF,)
 
         self.N.setParams(_res.x)
