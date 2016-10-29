@@ -44,7 +44,8 @@ for rect in rects:
     roi = im_th[pt1:pt1+leng, pt2:pt2+leng]
     # Resize the image
     cv2.imwrite("box.jpg",im)
-    cv2.imwrite("processed.jpg",roi)
+    cv2.imwrite("processed.jpg",im_th)
+    print pt1 + " " + pt2 + " " + leng
     roi = cv2.resize(roi, (28, 28), interpolation=cv2.INTER_AREA)
 
     roi = cv2.dilate(roi, (3, 3))
