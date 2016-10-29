@@ -39,13 +39,13 @@ for rect in rects:
     cv2.rectangle(im, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (0, 255, 0), 3)
 
     leng = int((rect[3]-rect[1])* 1.6)
-    pt1 = int((rect[1] + rect[3])// 2 - leng // 2)
+    pt1 = int((rect[1] + rect[3])// 2 - (leng // 2))
     pt2 = int((rect[0] + rect[2])// 2 - leng // 2)
     roi = im_th[pt1:pt1+leng, pt2:pt2+leng]
     # Resize the image
     cv2.imwrite("box.jpg",im)
     cv2.imwrite("processed.jpg",im_th)
-    print pt1
+    print rect[0]
     print pt2
     print leng
     roi = cv2.resize(roi, (28, 28), interpolation=cv2.INTER_AREA)
