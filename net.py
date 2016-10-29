@@ -55,7 +55,7 @@ class Net(object):
         J = 0.5*numpy.sum(numpy.square(y-self.yHat))
         return J
 
-    def save():
+    def save(self):
         f1 = open('W1.pkl','wb')
         f2 = open('W2.pkl','wb')
         pickle.dump(NN.W1,f1)
