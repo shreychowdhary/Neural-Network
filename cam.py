@@ -3,13 +3,27 @@ import net
 import pickle
 import numpy as np
 
+
 NN = net.Net(784,100,10)
+
 f1 = open('W1.pkl','rb')
 f2 = open('W2.pkl','rb')
+fx = open('X.pkl','rb')
+fyt = open('Yt.pkl','rb')
+fy = open('Y.pkl','rb')
 NN.W1 = pickle.load(f1)
 NN.W2 = pickle.load(f2)
+X = pickle.load(fx)
+yt = pickle.load(fyt)
+y = pickle.load(fy)
 f1.close()
 f2.close()
+fx.close()
+fyt.close()
+fy.close()
+
+res = np.argmax(NN.forward(X),axis = 1)
+print float(np.sum(res==yt))/yt.shape[0]
 
 im = cv2.imread("digit.png")
 im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
