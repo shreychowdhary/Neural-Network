@@ -37,13 +37,14 @@ rects = [cv2.boundingRect(ctr) for ctr in ctrs]
 
 for rect in rects:
     cv2.rectangle(im, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (0, 255, 0), 3)
-    cv2.imwrite('processed.png',im)
+    cv2.imwrite('processed.png',im_th)
     leng = int(rect[3] * 1.6)
     pt1 = int(rect[1] + rect[3] // 2 - leng // 2)
     pt2 = int(rect[0] + rect[2] // 2 - leng // 2)
     roi = im_th[pt1:pt1+leng, pt2:pt2+leng]
     # Resize the image
     roi = cv2.resize(roi, (28, 28), interpolation=cv2.INTER_AREA)
+
     roi = cv2.dilate(roi, (3, 3))
 
     X = np.mat(roi).reshape(1,784)
