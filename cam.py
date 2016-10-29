@@ -39,8 +39,8 @@ for rect in rects:
     cv2.rectangle(im, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (0, 255, 0), 3)
 
     leng = int(rect[3] * 1.6)
-    pt1 = int(rect[1] + rect[3] // 2 - leng // 2)
-    pt2 = int(rect[0] + rect[2] // 2 - leng // 2)
+    pt1 = int((rect[1] + rect[3])// 2 - leng // 2)
+    pt2 = int((rect[0] + rect[2])// 2 - leng // 2)
     roi = im_th[pt1:pt1+leng, pt2:pt2+leng]
     # Resize the image
     cv2.imwrite("box.jpg",im)
