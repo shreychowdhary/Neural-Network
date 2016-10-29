@@ -17,4 +17,4 @@ im_gray = cv2.GaussianBlur(im_gray, (5, 5), 0)
 ret, im_th = cv2.threshold(im_gray, 90, 255, cv2.THRESH_BINARY_INV)
 cv2.imwrite("digitProcessed.jpg",im_th)
 
- ctrs, hier = cv2.findContours(im_th.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+ctrs, hier = cv2.findContours(im_th.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
