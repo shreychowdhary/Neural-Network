@@ -30,4 +30,4 @@ for rect in rects:
     # Resize the image
     roi = cv2.resize(roi, (28, 28), interpolation=cv2.INTER_AREA)
     roi = cv2.dilate(roi, (3, 3))
-    cv2.imwrite("digitProcessed.jpg",roi)
+    print np.mat(roi).shape
