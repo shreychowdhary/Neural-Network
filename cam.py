@@ -25,7 +25,7 @@ fy.close()
 res = np.argmax(NN.forward(X),axis = 1)
 print float(np.sum(res==yt))/yt.shape[0]
 
-im = cv2.imread("digit.png")
+im = cv2.imread("digit.jpg")
 im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
 im_gray = cv2.GaussianBlur(im_gray, (5, 5), 0)
 ret, im_th = cv2.threshold(im_gray, 90, 255, cv2.THRESH_BINARY_INV)
