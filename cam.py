@@ -37,6 +37,8 @@ while True:
 
     rects = [cv2.boundingRect(ctr) for ctr in ctrs]
     print len(rects)
+    if len(rects) == 0:
+        continue
     for rect in rects:
         cv2.rectangle(im, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (0, 255, 0), 3)
         cv2.imwrite("rect.jpg",im)
@@ -45,6 +47,7 @@ while True:
         pt2 = int(rect[0] + rect[2] // 2 - leng // 2)
         roi = im_th[pt1:pt1+leng, pt2:pt2+leng]
         if(pt1 < 0 or pt2 < 0):
+            print "error getting digit"
             continue
         # Resize the image
 
