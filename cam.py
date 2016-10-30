@@ -31,12 +31,12 @@ while True:
     im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
     im_gray = cv2.GaussianBlur(im_gray, (5, 5), 0)
     ret, im_th = cv2.threshold(im_gray, 90, 255, cv2.THRESH_BINARY_INV)
-
+    cv2.imwrite("blackandwhite.jpg",im_th)
 
     ctrs, hier = cv2.findContours(im_th.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     rects = [cv2.boundingRect(ctr) for ctr in ctrs]
-
+    print len(rects)
     for rect in rects:
         cv2.rectangle(im, (rect[0], rect[1]), (rect[0] + rect[2], rect[1] + rect[3]), (0, 255, 0), 3)
         cv2.imwrite("rect.jpg",im)
@@ -44,6 +44,8 @@ while True:
         pt1 = int(rect[1] + rect[3] // 2 - leng // 2)
         pt2 = int(rect[0] + rect[2] // 2 - leng // 2)
         roi = im_th[pt1:pt1+leng, pt2:pt2+leng]
+        if(pt1 < 0 or pt2 < 0):
+            continue
         # Resize the image
 
         roi = cv2.resize(roi, (28, 28), interpolation=cv2.INTER_AREA)
