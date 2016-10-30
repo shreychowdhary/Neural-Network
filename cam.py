@@ -2,6 +2,7 @@ import cv2
 import net
 import pickle
 import numpy as np
+import time
 
 camera_port = 0
 ramp_frames = 30
