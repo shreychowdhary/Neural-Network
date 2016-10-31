@@ -2,7 +2,6 @@ import cv2
 import net
 import pickle
 import numpy as np
-import time
 
 camera_port = 0
 ramp_frames = 30
@@ -59,4 +58,3 @@ while True:
         print X
         num = np.argmax(NN.forward(X),axis=1)
         print num
-    time.sleep(.5)
