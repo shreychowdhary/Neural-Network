@@ -2,6 +2,7 @@ import cv2
 import net
 import pickle
 import numpy as np
+import time
 
 camera_port = 0
 ramp_frames = 30
@@ -58,3 +59,5 @@ while True:
         print X
         num = np.argmax(NN.forward(X),axis=1)
         print num
+        #if is probability is too low
+    time.sleep(1);
