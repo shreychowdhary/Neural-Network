@@ -11,7 +11,7 @@ from PIL import ImageTk
 
 camera_port = 0
 ramp_frames = 30
-root = Tkinter.Tk()
+#root = Tkinter.Tk()
 
 def get_image():
     retval, im = camera.read()
