@@ -17,7 +17,7 @@ def get_image():
     retval, im = camera.read()
     return im
 
-
+print len(sys.argv)
 if len(sys.argv) == 1:
     im = cv2.imread("digit.jpg")
 else :
