@@ -66,6 +66,7 @@ while True:
         pt2 = int(rect[0] + rect[2] // 2 - leng // 2)
         roi = im_th[pt1:pt1+leng, pt2:pt2+leng]
         if(pt1 < 0 or pt2 < 0):
+            root.wm_title("error getting digit")
             print "error getting digit"
             continue
         # Resize the image
@@ -75,8 +76,9 @@ while True:
 
         X = np.mat(roi).reshape(1,784)
         num = np.argmax(NN.forward(X),axis=1)
+        root.wm_title(num)
         print num
         #if is probability is too low
     root.update()
     #root.mainloop()
-    time.sleep(2);
+    time.sleep(1);
