@@ -5,7 +5,8 @@ import numpy as np
 import time
 import sys
 import Tkinter
-from PIL import Image, ImageTk
+from PIL import Image
+from PIL import ImageTk
 
 
 camera_port = 0
