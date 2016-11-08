@@ -11,14 +11,14 @@ from PIL import ImageTk
 
 camera_port = 0
 ramp_frames = 30
-#root = Tkinter.Tk()
+root = Tkinter.Tk()
 
 def get_image():
     retval, im = camera.read()
     return im
 
 print len(sys.argv)
-if len(sys.argv) == 1:
+if len(sys.argv) == 2:
     im = cv2.imread("digit.jpg")
 else :
     camera = cv2.VideoCapture(camera_port)
