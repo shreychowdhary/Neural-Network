@@ -46,8 +46,11 @@ while True:
     imgtk = ImageTk.PhotoImage(image=bwimg)
     if bwlabel == None:
         bwlabel = Tkinter.Label(root,image = imgtk)
+        bwlabel.image = imgtk
     else:
         bwlabel.configure(image = imgtk)
+        bwlabel.image = imgtk
+    bwlabel.pack()
 
     ctrs, hier = cv2.findContours(im_th.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
