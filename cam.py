@@ -72,6 +72,6 @@ while True:
         num = np.argmax(NN.forward(X),axis=1)
         print num
         #if is probability is too low
-    time.sleep(1);
     root.update()
     root.mainloop()
+    #time.sleep(1);
