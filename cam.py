@@ -45,7 +45,7 @@ while True:
     bwimg = Image.fromarray(im_th)
     imgtk = ImageTk.PhotoImage(image=bwimg)
     if bwlabel == None:
-        bwlabel = Tkinter.Label(root,image = imgtk).pack()
+        bwlabel = Tkinter.Label(root,image = imgtk)
     else:
         bwlabel.configure(image = imgtk)
 
