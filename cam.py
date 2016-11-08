@@ -12,6 +12,7 @@ from PIL import ImageTk
 camera_port = 0
 ramp_frames = 30
 root = Tkinter.Tk()
+bwlabel = None
 
 def get_image():
     retval, im = camera.read()
@@ -43,8 +44,10 @@ while True:
     cv2.imwrite("blackandwhite.jpg",im_th)
     bwimg = Image.fromarray(im_th)
     imgtk = ImageTk.PhotoImage(image=bwimg)
-    Tkinter.Label(root, image=imgtk).pack()
-
+    if bwlabel == None:
+        bwlabel = Tkinter.Label(root,image = imgtk).pack()
+    else:
+        bwlabel.configure(image = imgtk)
 
     ctrs, hier = cv2.findContours(im_th.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
