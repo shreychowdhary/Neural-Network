@@ -71,10 +71,9 @@ while True:
         roi = cv2.dilate(roi, (3, 3))
 
         X = np.mat(roi).reshape(1,784)
-        print X
         num = np.argmax(NN.forward(X),axis=1)
         print num
         #if is probability is too low
     root.update()
     #root.mainloop()
-    time.sleep(1);
+    time.sleep(2);
