@@ -17,7 +17,6 @@ def get_image():
     retval, im = camera.read()
     return im
 
-print len(sys.argv)
 if len(sys.argv) == 2:
     im = cv2.imread("digit.jpg")
 else :
@@ -45,7 +44,7 @@ while True:
     bwimg = Image.fromarray(im_th)
     imgtk = ImageTk.PhotoImage(image=bwimg)
     Tkinter.Label(root, image=imgtk).pack()
-    root.mainloop()
+
 
     ctrs, hier = cv2.findContours(im_th.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -74,3 +73,5 @@ while True:
         print num
         #if is probability is too low
     time.sleep(1);
+    root.update()
+    root.mainloop()
