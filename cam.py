@@ -73,5 +73,5 @@ while True:
         print num
         #if is probability is too low
     root.update()
-    root.mainloop()
+    #root.mainloop()
     #time.sleep(1);
