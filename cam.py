@@ -3,18 +3,26 @@ import net
 import pickle
 import numpy as np
 import time
+import sys
+import Tkinter
+import Image, ImageTk
+
 
 camera_port = 0
 ramp_frames = 30
-
-camera = cv2.VideoCapture(camera_port)
+root = Tkinter.Tk()
 
 def get_image():
     retval, im = camera.read()
     return im
 
-for i in xrange(ramp_frames):
-    temp = get_image()
+
+if len(sys.argv) == 1:
+    im = cv2.imread("digit.jpg")
+else :
+    camera = cv2.VideoCapture(camera_port)
+    for i in xrange(ramp_frames):
+        temp = get_image()
 
 NN = net.Net(784,100,10)
 
@@ -33,6 +41,10 @@ while True:
     im_gray = cv2.GaussianBlur(im_gray, (5, 5), 0)
     ret, im_th = cv2.threshold(im_gray, 90, 255, cv2.THRESH_BINARY_INV)
     cv2.imwrite("blackandwhite.jpg",im_th)
+    bwimg = Image.fromarray(im_th)
+    imgtk = ImageTk.PhotoImage(image=bwimg)
+    Tkinter.Label(root, image=imgtk).pack()
+    root.mainloop()
 
     ctrs, hier = cv2.findContours(im_th.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
