@@ -74,4 +74,4 @@ while True:
         #if is probability is too low
     root.update()
     #root.mainloop()
-    #time.sleep(1);
+    time.sleep(1);
